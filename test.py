@@ -46,7 +46,7 @@ for row in datahistory:
 print data2['history2'][0].strip()
 
 
-
+#a292030 is the app id for the withcer 3 game. we are only testing for that game for now
 for Apps in json_object['applist']['apps']['app']:
     if (Apps['appid'] == 292030):
         getprice = requests.get('http://store.steampowered.com/api/appdetails/?appids=%d&filters=price_overview&cc=us' % Apps['appid'])
@@ -68,7 +68,7 @@ for Apps in json_object['applist']['apps']['app']:
         #gethistory = requests.get('http://steamcommunity.com/market/pricehistory', params=params, cookies = cookie)
         #print(gethistory.text)
 
-        if getprice.status_code == 200:
+        if getprice.status_code == 200:#status code 200 means successful fetch
             rjson = json.loads(getprice.text)
             djson = json.loads(getdev.text)
             pjson = json.loads(getpub.text)
@@ -114,17 +114,11 @@ for Apps in json_object['applist']['apps']['app']:
                 dlc = 'N/A'
 
             Apps[Apps['appid']] = {'appID': Apps['appid'],'name': Apps['name'], 'price': price, 'developer': developer, 'publisher': publisher, 'date': date, 'score': score, 'genre': genre}
-            print Apps[Apps['appid']]
+            print Apps[Apps['appid']]#this prints out all the information about the game
             Apps[Apps['appid']] = {'dlc': dlc}
-            print Apps[Apps['appid']]
-            """
-            for dlcid in dlc:
-                Apps[Apps[dlcid]] = {'appID': dlcid, 'name': Apps['name'], 'price': price,
-                                       'developer': developer, 'publisher': publisher, 'date': date, 'score': score,
-                                       'genre': genre}
-                print Apps[Apps[dlcid]]
-            """
+            print Apps[Apps['appid']]#this will print out all the available appid for the dlc corresponding to the game
 
+#this gets the dlcs for that specific game
 for Apps in json_object['applist']['apps']['app']:
     if (Apps['appid'] in dlc):
         getprice = requests.get('http://store.steampowered.com/api/appdetails/?appids=%d&filters=price_overview&cc=us' % Apps['appid'])
@@ -184,6 +178,6 @@ for Apps in json_object['applist']['apps']['app']:
             #    history = 'N/A'
 
             Apps[Apps['appid']] = {'appID': Apps['appid'],'name': Apps['name'], 'price': price, 'developer': developer, 'publisher': publisher, 'date': date, 'score': score, 'genre': genre}
-            print Apps[Apps['appid']]
+            print Apps[Apps['appid']]#this prints out the dlc information
 
 print(response.status_code)
