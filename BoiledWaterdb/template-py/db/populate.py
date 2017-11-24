@@ -5,12 +5,12 @@ from urls import urls
 
 class Populate:
     def __init__(self):
-        self.engine = create_engine('mysql+mysqldb://root:Canada12!@localhost/boiledwaterdb')
+        self.engine = create_engine('mysql+mysqldb://root:Canada12!@localhost/boiledwaterdb', encoding = "utf-8")
 
     def populate(self):
         games = get_dataframe_from_response(urls[0])
-        games.to_sql('data', self.engine, index=False)
-        sql_df = pd.read_sql('data', con=self.engine)
+        games.to_sql('Test7', self.engine, index=False)
+        #sql_df = pd.read_sql('Test3', con=self.engine)
 
 def get_dataframe_from_response(url):
     response = requests.get(url)
@@ -20,9 +20,9 @@ def get_dataframe_from_response(url):
 
     data = pd.read_json("http://api.steampowered.com/ISteamApps/GetAppList/v0001/")
     games = pd.DataFrame(data['applist']['apps']['app'])
-    frame = pd.DataFrame(data, columns=headers)
 
-    return frame
+    print(games)
+    return games
 
 populate = Populate()
 populate.populate()
