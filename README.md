@@ -1,6 +1,7 @@
 WELCOME TO BOILEDWATERDB
 
 Steps to installing the Database:
+
 You Will Need: 
 
 Python
@@ -32,7 +33,7 @@ Simplified install:
 
 In Depth install:
 1. Create a database called boiledwaterdb, and create the 5 tables. In the folder this read me is in, in "SQL Captures" There is a txt file with all create table statements.
-2. To populate the database, run boiledwaterdbpopulate.py in template-py\db
+2. To populate the database, run boiledwaterdbpopulate.py
 
 	a. Make sure that the file username and passwords are correct
 
@@ -42,7 +43,14 @@ In Depth install:
 
 		ii. make sure to change all instances of 500 to your number in the code when changing it
 
-3. Put the .php files along with the connected files located in template-py\web\htdocs to the path of your Xamp\htdocs folder
+3. Put connect.php file to the path of your Xamp\htdocs folder
+
+
+
+
+THATS IT!
+
+
 
 
 
