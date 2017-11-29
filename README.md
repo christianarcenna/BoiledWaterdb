@@ -20,7 +20,6 @@ Simplified install:
 6. Put the php file in the :PATH:\Xamp\htdocs
 
 In Depth install:
-
 1. Create a database called boiledwaterdb, and create the 5 tables. In the folder this read me is in, in "SQL Captures" There is a txt file with all create table statements.
 2. To populate the database, run boiledwaterdbpopulate.py in template-py\db
 	a. Make sure that the file username and passwords are correct
