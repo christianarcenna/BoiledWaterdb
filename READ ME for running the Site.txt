@@ -1,0 +1,24 @@
+How to run the Boiled Water DB.
+
+Our Team used PostgreSQL with PG Admin 4
+Python to populate Database, 
+and php with Xampp to Pull and show results from database
+
+First Step: Create a database called boiledwaterdb, and create the 5 tables.
+	    In the folder this read me is in, in "SQL Captures" There is a txt file with all create table statements.
+
+Second Step: Time to poulate the databases, run "boiledwaterdbpopulate.py" in template-py > db. Make sure your 
+	     python has all the packages installed. Make sure the files username and passwords are correct
+	     according to your database
+
+	     This populate python file only populates until app_id reaches 500. Feel free to change the number 
+	     for more data in the tables, keep in mind the bigger the number the more stable your connection
+	     must be overtime. 3 times the number "500" will appear in the code, make sure you change all 3 to the
+	     same number.
+
+Third Step: Now time to run the site. Make sure you have Xampp installed and the files you will run is connected to
+	    local host correctly. Feel free to move them to the correct folder to run. You will run "index.php"
+	    in your browser to start. The .php files along with everythting conncected to them is located
+	    in template-py > web > htdocs
+
+And those are all the steps to get the site running :D Happy viewing!
