@@ -13,7 +13,11 @@ PostgreSQL with PG Admin 4
 The BoiledWaterDB repository
 
 
+
+
 Simplified install:
+
+
 1. Install Postgre following the lab7 https://github.com/sealneaward/data-management-lab-7
 2. Install Xamp with default settings
 3. Create the tables in Postgre
@@ -31,9 +35,16 @@ Simplified install:
 
 6. Put the php file in the :PATH:\Xamp\htdocs
 
+
+
+
 In Depth install:
-1. Create a database called boiledwaterdb, and create the 5 tables. In the folder this read me is in, in "SQL Captures" There is a txt file with all create table statements.
-2. To populate the database, run boiledwaterdbpopulate.py
+
+1. Follow the instructions to install PostgreSQL https://github.com/sealneaward/data-management-lab-7
+2. Install Xamp with default settings
+3. Download the repository from the master branch
+4. Create a database called boiledwaterdb, and create the 5 tables. In the folder this read me is in, in "SQL Captures" There is a txt file with all create table statements.
+5. To populate the database, run boiledwaterdbpopulate.py
 
 	a. Make sure that the file username and passwords are correct
 
@@ -43,7 +54,7 @@ In Depth install:
 
 		ii. make sure to change all instances of 500 to your number in the code when changing it
 
-3. Put connect.php file and the contents of the htdocs folder to the path of your Xamp\htdocs folder
+6. Put connect.php file and the contents of the htdocs folder to the path of your Xamp\htdocs folder
 
 
 
