@@ -1,0 +1,116 @@
+
+CREATE TABLE public.games
+(
+    app_id integer NOT NULL,
+    app_name character varying(255) COLLATE pg_catalog."default",
+    released character varying(255) COLLATE pg_catalog."default",
+    genre character varying(255) COLLATE pg_catalog."default",
+    sales integer NOT NULL,
+    developer integer NOT NULL,
+    publisher integer NOT NULL,
+    price double precision NOT NULL,
+    score double precision NOT NULL,
+    CONSTRAINT games_pkey PRIMARY KEY (app_id),
+    CONSTRAINT games_developer_fkey FOREIGN KEY (developer)
+        REFERENCES public.developer (d_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT games_publisher_fkey FOREIGN KEY (publisher)
+        REFERENCES public.publisher (publisher_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.games
+    OWNER to root;
+
+
+
+
+
+
+
+
+
+CREATE TABLE public.developer
+(
+    d_id integer NOT NULL,
+    d_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT developer_pkey PRIMARY KEY (d_id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.developer
+    OWNER to root;
+
+
+
+
+CREATE TABLE public.publisher
+(
+    publisher_id integer NOT NULL,
+    publisher_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT publisher_pkey PRIMARY KEY (publisher_id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.publisher
+    OWNER to root;
+
+
+
+CREATE TABLE public.history
+(
+    history_id integer NOT NULL DEFAULT nextval('history_history_id_seq'::regclass),
+    app_id integer NOT NULL,
+    price double precision NOT NULL,
+    yearmonth character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT history_app_id_fkey FOREIGN KEY (app_id)
+        REFERENCES public.games (app_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.history
+    OWNER to root;
+
+
+
+
+
+
+CREATE TABLE public.dlc
+(
+    dlc_id integer NOT NULL,
+    dlc_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    price double precision NOT NULL,
+    release_date character varying(255) COLLATE pg_catalog."default",
+    sales integer NOT NULL,
+    app_id integer NOT NULL,
+    CONSTRAINT dlc_pkey PRIMARY KEY (dlc_id),
+    CONSTRAINT "dlc_App_Id_fkey" FOREIGN KEY (app_id)
+        REFERENCES public.games (app_id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.dlc
+    OWNER to root;

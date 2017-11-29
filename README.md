@@ -45,7 +45,7 @@ In Depth install:
 2. Install XAMPP with default settings
 3. Install Python 2.7 and the required packages in the boiledwaterpopulate.py 
 4. Download the repository from the master branch
-5. Create a database called boiledwaterdb, and create the 5 tables. In the folder this read me is in, in "SQL Captures" There is a txt file with all create table statements.
+5. Create a database called boiledwaterdb, and create the 5 tables. In the folder "SQL Captures" there is a txt file with all create table statements.
 6. To populate the database, run boiledwaterdbpopulate.py
 
 	a. Make sure that the file username and passwords are correct
