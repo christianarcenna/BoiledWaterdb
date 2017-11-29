@@ -13,7 +13,7 @@ The BoiledWaterDB repository
 
 
 Simplified install:
-1. Install Postgre following the lab7. https://github.com/sealneaward/data-management-lab-7
+1. Install Postgre following the lab7 https://github.com/sealneaward/data-management-lab-7
 2. Install Xamp with default settings
 3. Create the tables in Postgre
 
@@ -45,7 +45,7 @@ In Depth install:
 3. Put the .php files along with the connected files located in template-py\web\htdocs to the path of your Xamp\htdocs folder
 
 
-sss
+
 
 
 
