@@ -43,7 +43,7 @@ In Depth install:
 
 		ii. make sure to change all instances of 500 to your number in the code when changing it
 
-3. Put connect.php file to the path of your Xamp\htdocs folder
+3. Put connect.php file and the contents of the htdocs folder to the path of your Xamp\htdocs folder
 
 
 
