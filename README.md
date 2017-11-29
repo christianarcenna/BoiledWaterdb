@@ -24,7 +24,7 @@ Simplified install:
 
 		i. This can be done by removing the foreign key constraints in the create table query and manually add it in
 
-4. Download the repository
+4. Download the repository, the master branch.
 5. Click boiledwaterdbpopulate.py
 
 	a. Wait for it to finish
