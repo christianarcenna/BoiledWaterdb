@@ -1,6 +1,6 @@
 #Author: Joshua Pineda
 #Date: 11/26/2017
-#Version 1.0
+#Version 1.2
 #A script that inserts Steam app information into the boiledwaterdb on PostgreSQL. If you want to use another database, some modifications are needed
 import requests
 import json
@@ -22,7 +22,7 @@ json_object = json.load(get)#Loads the JSON object
 con = psycopg2.connect(database='boiledwaterdb', user='root', host='localhost', password='root')#Attempt to connect to the PostgreSQL database, you must use these specific settings for your database. Make sure to create the tables beforehand.
 con.autocommit = True #Automatically commits the insertion of each row in the database
 cur = con.cursor() #Cursor position
-
+AppCheck = []
 #Initializes developer table
 developerID = {}
 developerID.update({"N/A": 0})
@@ -36,7 +36,7 @@ cur.execute("INSERT into publisher(publisher_id, publisher_name)" + "VALUES (%s,
 
 #Insert data for Apps with AppIDs under 100 and inserts them into games table
 for Apps in json_object['applist']['apps']['app']:
-    if (Apps['appid'] < 500): #Makes requests to pull data for all apps with ID < 500
+    if (Apps['appid'] < 500): #Makes requests to pull data for all apps with ID < 1000
         getprice = requests.get('http://store.steampowered.com/api/appdetails/?appids=%d&filters=price_overview&cc=us' % Apps['appid'])
         getdev = requests.get(
             'http://store.steampowered.com/api/appdetails/?appids=%d&filters=developers&cc=us' % Apps['appid'])
@@ -112,6 +112,7 @@ for Apps in json_object['applist']['apps']['app']:
                 cur.execute("INSERT into publisher(publisher_id, publisher_name)" + "VALUES (%s, %s)", (publisherID[publisher],
                             publisher))
             games = [int(Apps['appid']), str(Apps['name']), date, genre, developerID[developer], publisherID[publisher], sales, price, score]
+            AppCheck.append(Apps['appid'])
             print games
             #Insert data into games table
             cur.execute("INSERT into games(app_id, app_name, released, genre, developer, publisher, sales, price, score)" +  "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", games)
@@ -119,7 +120,7 @@ for Apps in json_object['applist']['apps']['app']:
 
 #Handles the DLC fetching and inserting for the database
 for Apps in json_object['applist']['apps']['app']:
-    if (Apps['appid'] < 500):#Gets the DLCs connected to all Apps with AppID < 500
+    if (Apps['appid'] in AppCheck):#Gets the DLCs connected to all Apps with AppID < 1000
         getdlc = requests.get('http://store.steampowered.com/api/appdetails/?appids=%d&cc=us' % Apps['appid'])
         AppID = Apps['appid']
         if (getdlc.status_code == 200):
@@ -176,7 +177,7 @@ for Apps in json_object['applist']['apps']['app']:
 
 #Inserts pricing history data for Apps with AppIDs under 100 and inserts them into History table
 for Apps in json_object['applist']['apps']['app']:
-    if (Apps['appid'] < 500):
+    if (Apps['appid'] in AppCheck):
 
         url2 = "http://steamsales.rhekua.com/view.php?steam_type=app&steam_id=%d"
         r = requests.get(url2 % Apps['appid'])#Gets history data from the query
